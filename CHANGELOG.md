@@ -7,6 +7,21 @@
 
 # 🚀 **Current Release - ZaneyOS v2.6.0**
 
+\
+
+#### 📅 **Updated: February 16th, 2026**
+
+- Removed `hyprpanel`
+  - No longer maintained
+    - Vendor created `wayle` to replace it
+    - Replaced in ZaneyOS with 'noctalia-shell'
+
+- `webkitgtk` being built from source
+  - Removed audacity is called `wxwidgets`
+  - Created overlay for `tumbler` to disable `libepub`
+    - These caused the build from source issue
+    - Building `webkitgtk` takes hours every rebuild/update
+
 #### 📅 **Updated: January 31st, 2026**
 
 - Changed default login manager to `TUI`
