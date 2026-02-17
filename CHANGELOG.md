@@ -11,13 +11,6 @@
 
 #### 📅 **Updated: February 16th, 2026**
 
-- Added binding to kill hyprland if stuck
-
-```
- Force quit the compositor even if locked/frozen
-"$modifier CONTROL, BACKSPACE, exec, killall -9 Hyprland"
-```
-
 - Removed `hyprpanel`
   - No longer maintained
     - Vendor created `wayle` to replace it
