@@ -1,14 +1,11 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    audacity
-    discord
-    nodejs
+    #  Add local pacakaged here
   ];
+  # Add host specific flatpaks here
   services = {
     flatpak = {
       packages = [
-
       ];
     };
   };
