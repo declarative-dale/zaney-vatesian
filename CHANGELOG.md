@@ -7,7 +7,10 @@
 
 # 🚀 **Current Release - ZaneyOS v2.6.0**
 
-\
+
+#### 📅 **Updated: February 19th, 2026**
+
+- Fixed `zcli` GPU detection for newer AMD GPUs 
 
 #### 📅 **Updated: February 16th, 2026**
 
