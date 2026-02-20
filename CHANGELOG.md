@@ -7,10 +7,13 @@
 
 # 🚀 **Current Release - ZaneyOS v2.6.0**
 
-
 #### 📅 **Updated: February 19th, 2026**
 
-- Fixed `zcli` GPU detection for newer AMD GPUs 
+- Fixed `zcli` GPU detection for newer AMD GPUs
+- `nixvim.nix` changes
+  - Disabled Zig language server
+  - Disabled marksman language server
+    - Caused dotnet lib to be compiled (takes hours)
 
 #### 📅 **Updated: February 16th, 2026**
 
