@@ -10,6 +10,7 @@
 #### 📅 **Updated: February 19th, 2026**
 
 - Fixed `zcli` GPU detection for newer AMD GPUs
+  - Fixed the fix to properly detect VMs
 - `nixvim.nix` changes
   - Disabled Zig language server
   - Disabled marksman language server
