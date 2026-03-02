@@ -17,6 +17,13 @@
     ICON_ROCKET="🚀"
 
     # --- Helper Functions ---
+    get_flake_profile() {
+      local flake_profile=""
+      if [ -f "$FLAKE_NIX_PATH" ]; then
+        flake_profile=$(${pkgs.gnugrep}/bin/grep -E '^[[:space:]]*profile[[:space:]]*=' "$FLAKE_NIX_PATH" | ${pkgs.gnused}/bin/sed 's/.*=[[:space:]]*"\([^"]*\)".*/\1/')
+      fi
+      echo "$flake_profile"
+    }
     print_status() {
       echo
       echo "--- $ICON_INFO $1 ---"
@@ -130,7 +137,7 @@ in
 
     # --- Configuration ---
     PROJECT="zaneyos"   #ddubos or zaneyos
-    PROFILE="${profile}"
+    PROFILE_DEFAULT="${profile}"
     BACKUP_FILES_STR="${backupFilesString}"
     VERSION="1.0.2"
     FLAKE_NIX_PATH="$HOME/$PROJECT/flake.nix"
@@ -341,6 +348,10 @@ in
     }
 
     # --- Main Logic ---
+    PROFILE="$(get_flake_profile)"
+    if [ -z "$PROFILE" ]; then
+      PROFILE="$PROFILE_DEFAULT"
+    fi
     if [ "$#" -eq 0 ]; then
       echo "Error: No command provided." >&2
       print_help
