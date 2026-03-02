@@ -17,13 +17,6 @@
     ICON_ROCKET="🚀"
 
     # --- Helper Functions ---
-    get_flake_profile() {
-      local flake_profile=""
-      if [ -f "$FLAKE_NIX_PATH" ]; then
-        flake_profile=$(${pkgs.gnugrep}/bin/grep -E '^[[:space:]]*profile[[:space:]]*=' "$FLAKE_NIX_PATH" | ${pkgs.gnused}/bin/sed 's/.*=[[:space:]]*"\([^"]*\)".*/\1/')
-      fi
-      echo "$flake_profile"
-    }
     print_status() {
       echo
       echo "--- $ICON_INFO $1 ---"
@@ -145,6 +138,13 @@ in
     read -r -a BACKUP_FILES <<< "$BACKUP_FILES_STR"
 
     # --- Helper Functions ---
+    get_flake_profile() {
+      local flake_profile=""
+      if [ -f "$FLAKE_NIX_PATH" ]; then
+        flake_profile=$(${pkgs.gnugrep}/bin/grep -E '^[[:space:]]*profile[[:space:]]*=' "$FLAKE_NIX_PATH" | ${pkgs.gnused}/bin/sed 's/.*=[[:space:]]*"\([^"]*\)".*/\1/')
+      fi
+      echo "$flake_profile"
+    }
     verify_hostname() {
       local current_hostname
       local flake_hostname
