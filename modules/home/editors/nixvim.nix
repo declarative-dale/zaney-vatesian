@@ -44,6 +44,9 @@
       settings = {
         flavour = "mocha";
         transparent_background = false;
+        integrations = {
+          lualine = true;
+        };
       };
     };
 
