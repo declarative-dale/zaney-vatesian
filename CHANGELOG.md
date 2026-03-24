@@ -7,6 +7,10 @@
 
 # 🚀 **Current Release - ZaneyOS v2.6.1**
 
+- Fixed eval warnings:
+  - `gtk.gtk4.theme` set to `null`
+  - `git.signing.format` set to `null`
+- `nixvim` lualine theme set to `auto`
 - Changed to NixOS unstable branch
 - Ported `DropTerminal` from `KoolDots` to ZaneyOS
   - Replaces pyprland and some python dependencies
