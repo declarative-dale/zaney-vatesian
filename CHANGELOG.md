@@ -26,6 +26,12 @@
 
 # 🚀 **Current Release - ZaneyOS v2.6.0**
 
+#### 📅 **Updated: April 3rd, 2026**
+
+- Swapped `awww` for `swww`
+  - `swww` is no longer maintained
+  - removed `--format xrgb` flag also no needed
+
 #### 📅 **Updated: February 19th, 2026**
 
 - Fixed `zcli` GPU detection for newer AMD GPUs
