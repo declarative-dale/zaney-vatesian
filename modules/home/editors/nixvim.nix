@@ -329,13 +329,13 @@
       lazygit
       nil
       hyprls
-      nodePackages.typescript-language-server
-      nodePackages.typescript
+      typescript-language-server
+      typescript
       vscode-langservers-extracted
       pyright
       lua-language-server
       zls
-      #marksman
+      marksman
       multimarkdown
       clang-tools
       prettierd
@@ -344,6 +344,8 @@
       nixpkgs-fmt
       figlet
       toilet
+      bash-language-server
+      tailwindcss-language-server
     ];
 
     # Diagnostic UI and notify background tweaks
