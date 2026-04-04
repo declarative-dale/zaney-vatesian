@@ -44,7 +44,6 @@
   hyprKbVariant = variantFinal;
 in {
   home.packages = with pkgs; [
-    awww
     grim
     slurp
     wl-clipboard

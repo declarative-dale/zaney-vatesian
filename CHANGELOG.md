@@ -7,6 +7,7 @@
 
 # 🚀 **Current Release - ZaneyOS v2.6.1**
 
+- Added `awww` as flake input for installs < 25.11
 - Fixed eval warnings:
   - `gtk.gtk4.theme` set to `null`
   - `git.signing.format` set to `null`
