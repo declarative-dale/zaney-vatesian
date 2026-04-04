@@ -139,23 +139,23 @@ has_intel=false
 has_amd=false
 has_vm=false
 
-if lspci | grep -qi 'vga\|3d\|display'; then
+if lspci -nn | grep -qi 'vga\|3d\|display'; then
   while read -r line; do
-    if echo "$line" | grep -Eqi '\b(nvidia)\b'; then
+    if echo "$line" | grep -Eqi '\[10de\]'; then
       has_nvidia=true
-    elif echo "$line" | grep -Eqi '\b(amd|ati|advanced micro devices)\b'; then
+    elif echo "$line" | grep -Eqi '\[1002\]'; then
       has_amd=true
-    elif echo "$line" | grep -Eqi '\b(intel)\b'; then
+    elif echo "$line" | grep -Eqi '\[8086\]'; then
       has_intel=true
-    elif echo "$line" | grep -Eqi '\b(virtio|vmware)\b'; then
+    elif echo "$line" | grep -Eqi '\b(virtio|vmware|qxl|qemu|virtualbox|bochs|hyper-v|microsoft)\b'; then
       has_vm=true
     fi
-  done < <(lspci | grep -i 'vga\|3d\|display')
+  done < <(lspci -nn | grep -i 'vga\|3d\|display')
 
   if $has_vm; then
     DETECTED_PROFILE="vm"
   elif $has_nvidia && $has_amd; then
-    DETECTED_PROFILE="amd-nvidia-hybrid"
+    DETECTED_PROFILE="amd-hybrid"
   elif $has_nvidia && $has_intel; then
     DETECTED_PROFILE="nvidia-laptop"
   elif $has_nvidia; then
