@@ -51,6 +51,7 @@ in {
     ydotool
     hyprpolkitagent
     hyprshot
+    hyprshutdown
     hyprpicker
     #hyprland-qtutils # needed for banners and ANR messages
   ];
