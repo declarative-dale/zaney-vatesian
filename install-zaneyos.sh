@@ -138,16 +138,41 @@ has_nvidia=false
 has_intel=false
 has_amd=false
 has_vm=false
+detect_vm() {
+  if command -v systemd-detect-virt &>/dev/null; then
+    if systemd-detect-virt --quiet; then
+      return 0
+    fi
+  fi
+  for f in /sys/class/dmi/id/product_name /sys/class/dmi/id/sys_vendor; do
+    if [ -r "$f" ] && grep -Eqi 'qemu|kvm|vmware|virtualbox|hyper-v|microsoft corporation|xen|parallels' "$f"; then
+      return 0
+    fi
+  done
+  return 1
+}
 
-if lspci -nn | grep -qi 'vga\|3d\|display'; then
+if detect_vm; then
+  has_vm=true
+fi
+
+if lspci | grep -qi 'vga\|3d\|display'; then
   while read -r line; do
-    if echo "$line" | grep -Eqi '\[10de\]'; then
+    if echo "$line" | grep -Eq '\[10de:'; then
       has_nvidia=true
-    elif echo "$line" | grep -Eqi '\[1002\]'; then
+    elif echo "$line" | grep -Eq '\[1002:'; then
       has_amd=true
-    elif echo "$line" | grep -Eqi '\[8086\]'; then
+    elif echo "$line" | grep -Eq '\[8086:'; then
       has_intel=true
-    elif echo "$line" | grep -Eqi '\b(virtio|vmware|qxl|qemu|virtualbox|bochs|hyper-v|microsoft)\b'; then
+    elif echo "$line" | grep -Eq '\[(1af4|15ad|80ee|1b36|1414|1234|1013):'; then
+      has_vm=true
+    elif echo "$line" | grep -qi 'nvidia'; then
+      has_nvidia=true
+    elif echo "$line" | grep -qi 'amd\|ati\|advanced micro devices'; then
+      has_amd=true
+    elif echo "$line" | grep -qi 'intel'; then
+      has_intel=true
+    elif echo "$line" | grep -Eqi 'virtio|vmware|virtualbox|qxl|hyper-v|microsoft corporation|parallels|qemu|bochs|cirrus|svga|virtual'; then
       has_vm=true
     fi
   done < <(lspci -nn | grep -i 'vga\|3d\|display')
@@ -155,7 +180,7 @@ if lspci -nn | grep -qi 'vga\|3d\|display'; then
   if $has_vm; then
     DETECTED_PROFILE="vm"
   elif $has_nvidia && $has_amd; then
-    DETECTED_PROFILE="amd-hybrid"
+    DETECTED_PROFILE="amd-nvidia-hybrid"
   elif $has_nvidia && $has_intel; then
     DETECTED_PROFILE="nvidia-laptop"
   elif $has_nvidia; then
