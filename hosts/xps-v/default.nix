@@ -1,7 +1,11 @@
 {...}: {
   imports = [
     ./hardware.nix
+    ./fingerprint.nix
     ./host-packages.nix
+    ./power.nix
+    ./webcam.nix
+    ./yubikey.nix
   ];
 
   services.keyd = {
@@ -21,5 +25,4 @@
     MatchName=keyd*keyboard
     AttrKeyboardIntegration=internal
   '';
-
 }

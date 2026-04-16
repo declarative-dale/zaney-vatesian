@@ -6,7 +6,7 @@
     _1password-gui
     _1password-cli
     micro
-    uefimanager
+    efibootmgr
     lazygit
   ];
   # Add host specific flatpaks here
