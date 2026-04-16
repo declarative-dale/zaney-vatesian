@@ -2,7 +2,6 @@
   imports = [
     ./hardware.nix
     ./host-packages.nix
-    ./nixvim.nix
   ];
 
   services.keyd = {
