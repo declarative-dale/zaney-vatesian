@@ -11,10 +11,12 @@
   services.keyd = {
     enable = true;
     keyboards.default.settings.main = {
-      # Preserve the normal Meta keys and treat the Copilot key as an extra Super key.
+      # Dell XPS 13 9350 firmware/kernel combos can expose the Copilot/Super keys
+      # as either meta, search, or f23. Normalize them all to a single Super key.
       leftmeta = "leftmeta";
-      rightmeta = "rightmeta";
-      f23 = "rightmeta";
+      rightmeta = "leftmeta";
+      search = "leftmeta";
+      f23 = "leftmeta";
     };
   };
 
