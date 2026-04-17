@@ -6,7 +6,6 @@
 }: let
   inherit
     (lib)
-    isPath
     mkEnableOption
     mkIf
     mkMerge
@@ -51,7 +50,7 @@
 
   renderPamU2fSettings = settings:
     mapAttrs (_: value:
-      if isPath value
+      if builtins.typeOf value == "path"
       then toString value
       else value)
     settings;
