@@ -37,13 +37,13 @@
   security.pam.services = {
     login = {
       unixAuth = true;
-      fprintAuth = false;
+      fprintAuth = true;
       enableGnomeKeyring = true;
     };
 
     ly = {
       unixAuth = true;
-      fprintAuth = false;
+      fprintAuth = true;
       enableGnomeKeyring = true;
     };
 
