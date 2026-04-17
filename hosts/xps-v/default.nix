@@ -5,6 +5,7 @@
     ./hardware.nix
     ./fingerprint.nix
     ./host-packages.nix
+    ./pam-auth.nix
     ./power.nix
     ./webcam.nix
     ./yubikey.nix
