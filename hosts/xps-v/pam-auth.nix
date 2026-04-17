@@ -55,6 +55,12 @@
       unixAuth = true;
       fprintAuth = true;
       rules.auth.fprintd.order = config.security.pam.services.sudo.rules.auth.u2f.order - 10;
+      # PAM auth is serialized, so the first interactive method blocks the rest.
+      # Keep fingerprint first, but fall through quickly to YubiKey touch or password.
+      rules.auth.fprintd.settings = {
+        max-tries = 1;
+        timeout = 3;
+      };
     };
   };
 }
