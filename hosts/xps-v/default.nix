@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./ai.nix
     ./hardware.nix
     ./fingerprint.nix
     ./host-packages.nix
