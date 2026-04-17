@@ -1,6 +1,8 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     #  Add local pacakaged here
+    bitwarden-desktop
+    bubblewrap # Needed for Codex's sandbox environment.
     sbctl
     _1password-gui
     _1password-cli
@@ -12,6 +14,7 @@
   services = {
     flatpak = {
       packages = [
+        "com.nextcloud.desktopclient.nextcloud"
       ];
     };
   };
