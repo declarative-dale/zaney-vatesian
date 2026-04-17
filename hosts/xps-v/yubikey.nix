@@ -43,7 +43,10 @@
       cue = cfg.pamU2f.cue;
       interactive = cfg.pamU2f.interactive;
     }
-    // cfg.pamU2f.settings
+    // cfg.pamU2f.settings;
+
+  basePamU2fSettingsWithAuthFile =
+    basePamU2fSettings
     // optionalAttrs (cfg.pamU2f.authFile != null) {
       authfile = cfg.pamU2f.authFile;
     };
@@ -199,7 +202,10 @@ in {
       security.pam.u2f = {
         enable = cfg.pamU2f.globalEnable;
         control = cfg.pamU2f.control;
-        settings = basePamU2fSettings;
+        settings =
+          if cfg.pamU2f.globalEnable
+          then basePamU2fSettingsWithAuthFile
+          else basePamU2fSettings;
       };
 
       security.pam.services = mapAttrs (_: serviceCfg: {
@@ -212,7 +218,7 @@ in {
         };
 
         rules.auth.u2f.settings =
-          renderPamU2fSettings basePamU2fSettings
+          renderPamU2fSettings basePamU2fSettingsWithAuthFile
           // renderPamU2fSettings serviceCfg.settings;
       }) cfg.pamU2f.services;
     })
