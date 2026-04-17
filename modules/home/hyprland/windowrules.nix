@@ -207,13 +207,13 @@ _: {
 
       windowrule {
         name = IdleInhibit-fullscreen-1
-        match:class = ^(*)$
+        match:class = ^(.*)$
         idle_inhibit = fullscreen
       }
 
       windowrule {
         name = IdleInhibit-fullscreen-2
-        match:title = ^(*)$
+        match:title = ^(.*)$
         idle_inhibit = fullscreen
       }
 

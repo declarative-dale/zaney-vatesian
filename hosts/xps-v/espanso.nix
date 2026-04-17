@@ -1,5 +1,6 @@
 {username, ...}: {
-  users.users.${username}.extraGroups = ["input"];
+  # Espanso needs both input-device read access and /dev/uinput write access on Wayland.
+  users.users.${username}.extraGroups = ["input" "uinput"];
 
   home-manager.users.${username}.services.espanso = {
     enable = true;
