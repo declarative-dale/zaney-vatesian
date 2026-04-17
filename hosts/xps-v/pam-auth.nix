@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   local.yubikey.pamU2f = {
     enable = true;
     globalEnable = false;
@@ -39,17 +39,22 @@
       unixAuth = true;
       fprintAuth = true;
       enableGnomeKeyring = true;
+      # Fingerprint must run before the required U2F rule so a successful
+      # fingerprint can short-circuit the stack for the passwordless path.
+      rules.auth.fprintd.order = config.security.pam.services.login.rules.auth.u2f.order - 10;
     };
 
     ly = {
       unixAuth = true;
       fprintAuth = true;
       enableGnomeKeyring = true;
+      rules.auth.fprintd.order = config.security.pam.services.ly.rules.auth.u2f.order - 10;
     };
 
     sudo = {
       unixAuth = true;
       fprintAuth = true;
+      rules.auth.fprintd.order = config.security.pam.services.sudo.rules.auth.u2f.order - 10;
     };
   };
 }
