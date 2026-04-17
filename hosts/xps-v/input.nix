@@ -26,13 +26,19 @@
       mouse_map right release ungrabbed paste_from_selection
     '';
 
-    programs.ghostty.settings.right-click-action = "paste";
+    programs.ghostty.settings = {
+      copy-on-select = "clipboard";
+      right-click-action = "paste";
+    };
 
-    programs.alacritty.settings.mouse.bindings = lib.mkAfter [
-      {
-        mouse = "Right";
-        action = "PasteSelection";
-      }
-    ];
+    programs.alacritty.settings = {
+      selection.save_to_clipboard = true;
+      mouse.bindings = lib.mkAfter [
+        {
+          mouse = "Right";
+          action = "PasteSelection";
+        }
+      ];
+    };
   };
 }
