@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./ai.nix
+    ./espanso.nix
     ./hardware.nix
     ./fingerprint.nix
     ./host-packages.nix
