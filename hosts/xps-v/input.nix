@@ -16,6 +16,10 @@
       tap_button_map = "lrm";
     };
 
+    home.file."./.config/wezterm/wezterm.lua".text = lib.mkForce (
+      builtins.readFile ./wezterm.lua
+    );
+
     programs.kitty.extraConfig = lib.mkAfter ''
       # On xps-v, use right click to paste instead of extending a selection.
       mouse_map right press ungrabbed
@@ -23,5 +27,12 @@
     '';
 
     programs.ghostty.settings.right-click-action = "paste";
+
+    programs.alacritty.settings.mouse.bindings = lib.mkAfter [
+      {
+        mouse = "Right";
+        action = "PasteSelection";
+      }
+    ];
   };
 }
