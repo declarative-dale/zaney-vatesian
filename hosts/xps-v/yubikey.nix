@@ -57,6 +57,17 @@
       then toString value
       else value)
     settings;
+
+  renderPamU2fArgs =
+    settings:
+      lib.concatLists (
+        lib.flip lib.mapAttrsToList settings (
+          name: value:
+            if builtins.isBool value
+            then lib.optional value name
+            else lib.optional (value != null) "${name}=${toString value}"
+        )
+      );
 in {
   options.local.yubikey = {
     management.enable = mkEnableOption "basic YubiKey management tooling";
@@ -217,9 +228,14 @@ in {
             else cfg.pamU2f.control;
         };
 
-        rules.auth.u2f.settings =
-          renderPamU2fSettings basePamU2fSettingsWithAuthFile
-          // renderPamU2fSettings serviceCfg.settings;
+        rules.auth.u2f = {
+          settings = lib.mkForce {};
+          args =
+            renderPamU2fArgs (
+              renderPamU2fSettings basePamU2fSettingsWithAuthFile
+              // renderPamU2fSettings serviceCfg.settings
+            );
+        };
       }) cfg.pamU2f.services;
     })
   ];
