@@ -14,6 +14,7 @@
   services = {
     flatpak = {
       packages = [
+        "im.riot.Riot"
         "com.nextcloud.desktopclient.nextcloud"
       ];
     };
