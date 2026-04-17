@@ -71,7 +71,7 @@
       # fingerprint attempts before falling through to password auth.
       rules.auth.fprintd.settings = {
         max-tries = 5;
-        timeout = -1;
+        timeout = 10;
       };
     };
   };
