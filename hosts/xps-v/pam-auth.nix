@@ -12,6 +12,8 @@
         control = "required";
         settings = {
           cue = false;
+          debug = true;
+          debug_file = "syslog";
           userpresence = 0;
         };
       };
@@ -20,6 +22,8 @@
         control = "required";
         settings = {
           cue = false;
+          debug = true;
+          debug_file = "syslog";
           userpresence = 0;
         };
       };
